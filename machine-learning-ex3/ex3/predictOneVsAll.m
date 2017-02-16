@@ -15,7 +15,7 @@ num_labels = size(all_theta, 1);
 p = zeros(size(X, 1), 1);
 
 % Add ones to the X data matrix
-X = [ones(m, 1) X];
+X = [ones(m, 1) X];% X = m * n+1, all_theta = k * n + 1
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Complete the following code to make predictions using
@@ -30,9 +30,10 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+z = X * all_theta';%m * k
 
-
-
+[maxp imaxp] = max(sigmoid(z), [], 2);
+p = imaxp;
 
 
 
