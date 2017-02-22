@@ -77,13 +77,28 @@ A3 = sigmoid(Z3); # 5000 x 10
 
 #below for code is passed, try to use vectorized version later
 temp = 0;
-for i=1:m
-	for k=1:num_labels
+for i = 1:m
+	for k = 1:num_labels
 		temp = temp + (-Y(i, k) * log(A3(i, k)) - (1 - Y(i, k)) * log(1 - A3(i, k)));
 	end
 end
 
-J = temp / m;
+part1 = 0;
+for j = 1:hidden_layer_size
+	for k = 2:input_layer_size + 1
+		part1 += Theta1(j, k) ^ 2;
+	end
+end
+
+part2 = 0;
+for j = 1:num_labels
+	for k = 2:hidden_layer_size + 1
+		part2 += Theta2(j, k) ^ 2;
+	end
+end
+
+
+J = temp / m + (part1 + part2) * lambda / 2 / m;
 
 
 
