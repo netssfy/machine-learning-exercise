@@ -61,11 +61,29 @@ Theta2_grad = zeros(size(Theta2));
 %               the regularization separately and then add them to Theta1_grad
 %               and Theta2_grad from Part 2.
 %
+#is there a grace way?
+Y = zeros(m, 10); # 5000 x 10
+for i=1:m
+	Y(i, y(i)) = 1;
+end
 
+A1 = [ones(m, 1) X];# 5000x401
 
+Z2 = A1 * Theta1';# 5000 x 401 * 401 x 25 = 5000 x 25
+A2 = [ones(m, 1) sigmoid(Z2)]; # 5000 x 25
 
+Z3 = A2 * Theta2'; # 5000 x 26 * 26 x 10 = 5000 * 10
+A3 = sigmoid(Z3); # 5000 x 10
 
+#below for code is passed, try to use vectorized version later
+temp = 0;
+for i=1:m
+	for k=1:num_labels
+		temp = temp + (-Y(i, k) * log(A3(i, k)) - (1 - Y(i, k)) * log(1 - A3(i, k)));
+	end
+end
 
+J = temp / m;
 
 
 
