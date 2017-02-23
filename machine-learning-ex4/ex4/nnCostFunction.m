@@ -62,15 +62,16 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 #is there a grace way?
-Y = zeros(m, 10); # 5000 x 10
+Y = zeros(m, num_labels); # 5000 x 10
 for i=1:m
 	Y(i, y(i)) = 1;
 end
 
+############forward propagation##############
 A1 = [ones(m, 1) X];# 5000x401
 
 Z2 = A1 * Theta1';# 5000 x 401 * 401 x 25 = 5000 x 25
-A2 = [ones(m, 1) sigmoid(Z2)]; # 5000 x 25
+A2 = [ones(m, 1) sigmoid(Z2)]; # 5000 x 26
 
 Z3 = A2 * Theta2'; # 5000 x 26 * 26 x 10 = 5000 * 10
 A3 = sigmoid(Z3); # 5000 x 10
@@ -101,10 +102,19 @@ end
 J = temp / m + (part1 + part2) * lambda / 2 / m;
 
 
+#########back propagation###########
+D1 = zeros(size(Theta1));
+D2 = zeros(size(Theta2));
+for i = 1:m
+  d3 = (A3(i, :) - Y(i, :))'; # 10 x 1
+  d2 = (Theta2' * d3) .* sigmoidGradient([1 Z2(i, :)])';# 26 x 1
 
+  D2 += d3 * A2(i, :); # 10 x 1 * 1 x 26 => 10 x 26
+  D1 += d2(2:end) * A1(i, :); # 25 x 1 * 1 x 401 => 25 x 401
+end
 
-
-
+Theta1_grad = D1 / m;
+Theta2_grad = D2 / m;
 
 
 
