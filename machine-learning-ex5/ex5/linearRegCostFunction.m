@@ -19,14 +19,16 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
+# Cost Function
+H = X * theta; # m x n * n * 1 => m x 1
+Hbias = H - y; # m x 1
+Twb = theta(2:end);# theta without bias 
+J = ((Hbias' * Hbias) + Twb' * Twb * lambda) / m / 2;
 
-
-
-
-
-
-
-
+# Gradient
+# 		 n x m  * m x 1 + 				 n x 1
+grad = (X' * Hbias + lambda * theta) / m; # n x 1
+grad(1) = (Hbias' * ones(m, 1)) / m;
 
 
 
