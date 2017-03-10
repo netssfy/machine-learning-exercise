@@ -29,17 +29,24 @@ diff = 1;
 
 for i=1:length(pool)
 	for j=1:length(pool)
-		tempC = pool[i];
-		tempSigma = pool[j];
+		tempC = pool(i);
+		tempSigma = pool(j);
 		model= svmTrain(X, y, tempC, @(x1, x2) gaussianKernel(x1, x2, tempSigma));
 		tempPred = svmPredict(model, Xval);
 		tempDiff = mean(double(tempPred ~= yval));
+    tempDiff
+    tempC
+    tempSigma
 		if tempDiff < diff
 			C = tempC;
 			sigma = tempSigma;
+      diff = tempDiff;
 		end
 	end
 end
+
+C
+sigma
 
 
 
