@@ -26,8 +26,13 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
+IDX = zeros(K, m);#each row represents which example belong to the centroid.
+for i=1:K
+	b = (idx == i)';
+	IDX(i, :) = b ./ sum(b) ;#IDX = k x m
+end
 
-
+centroids = IDX * X;
 
 
 

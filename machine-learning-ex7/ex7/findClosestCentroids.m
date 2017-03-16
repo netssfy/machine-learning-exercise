@@ -21,9 +21,13 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
-
+m = size(X, 1);
+for i=1:m
+	xi = X(i, :); #xi = 1 x n
+	diff = (centroids - xi);
+	Ci = sum(diff .* diff, 2);
+	[v, idx(i)] = min(Ci);
+end
 
 
 
