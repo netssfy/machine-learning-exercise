@@ -1,2 +1,10 @@
 token.mat
 octave-workspace
+
+deep-learning/mnist/\.vs/mnist/v15/\.suo
+
+deep-learning/mnist/mnist/MNIST-data/
+
+deep-learning/mnist/mnist/mnist_convnet_model/
+
+*.user
