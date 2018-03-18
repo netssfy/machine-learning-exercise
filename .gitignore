@@ -8,3 +8,5 @@ deep-learning/mnist/mnist/MNIST-data/
 deep-learning/mnist/mnist/mnist_convnet_model/
 
 *.user
+
+deep-learning/\.vs/deep-learning/v15/\.suo
