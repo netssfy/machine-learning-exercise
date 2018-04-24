@@ -14,3 +14,4 @@ deep-learning/\.vs/deep-learning/v15/\.suo
 deep-learning/**/node_modules/
 deep-learning/**/dist/
 deep-learning/**/package-lock.json
+deep-learning/pomelo-predictor/MNIST-data/

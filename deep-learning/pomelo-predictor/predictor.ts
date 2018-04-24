@@ -11,9 +11,14 @@ model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
 const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
 const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);
 
-// Train the model using the data.
-model.fit(xs, ys).then(() => {
-  // Use the model to do inference on a data point the model hasn't seen before:
-  console.log(model.predict(tf.tensor2d([5], [1, 1])));
-  console.log('hello tf');
-});
+window.onload = function() {
+  // Train the model using the data.
+  model.fit(xs, ys).then(() => {
+    // Use the model to do inference on a data point the model hasn't seen before:
+    console.log(model.predict(tf.tensor2d([5], [1, 1])));
+    console.log('hello tf');
+
+    const tfImage1 = tf.fromPixels(document.getElementById('image1') as HTMLImageElement);
+    tfImage1.print();
+  });
+}

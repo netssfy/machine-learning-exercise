@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'demo',
+  mode: 'development',
   entry: './predictor.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
